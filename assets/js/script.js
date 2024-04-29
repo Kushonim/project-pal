@@ -36,7 +36,7 @@ function createTaskCard(task) {
     bgColor += " bg-light";
   }
 
-  //   create task card
+  // Create task card
   const taskCard = `
     <div class="draggable task-card card mb-3 ${bgColor}" data-task-id="${task.id}">
       <div class="card-body">
@@ -56,7 +56,7 @@ function renderTaskList() {
   // Clear the columns of their tasks so that when rerendered there are no duplicates
   $("#todo-cards, #in-progress-cards, #done-cards").empty();
 
-  //   Create a task card for each task in the list
+  // Create a task card for each task in the list
   taskList.forEach((task) => {
     const taskCard = createTaskCard(task);
     if (task.status === "todo") {
@@ -141,14 +141,14 @@ function handleDrop(event, ui) {
     newStatus = "todo";
   }
 
-  //   finds the task and sets the new status for the task
+  // Finds the task and sets the new status
   const taskIndex = taskList.findIndex((task) => task.id === cardId);
   if (taskIndex !== -1) {
     taskList[taskIndex].status = newStatus;
     localStorage.setItem("tasks", JSON.stringify(taskList));
   }
 
-  //   detatches this task from the column it was in and appends it to the one it was dropped in
+  // Detatches this task from the column it was in and appends it to the one it was dropped in
   ui.draggable.detach().appendTo($(this));
 
   renderTaskList();
